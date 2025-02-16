@@ -1,10 +1,10 @@
 import secrets
 from typing import Annotated
-
 from fastapi import Depends, FastAPI, HTTPException, status
 from fastapi.security import HTTPBasic, HTTPBasicCredentials
 from app.database import Base, engine
 from app.models.user import User
+from app.routes import user_routes
 
 app = FastAPI()
 
@@ -35,6 +35,9 @@ def get_current_username(
         
         return credentials.username
 
+app.include_router(user_routes.router)
+
+# Auth 
 @app.get("/user/me")
 def read_current_user(credentials: Annotated[HTTPBasicCredentials, Depends(security)]):
     return {'username': credentials.username, 'password': credentials.password}

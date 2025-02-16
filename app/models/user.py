@@ -1,5 +1,8 @@
 from sqlalchemy import Column, Integer, String, VARCHAR, Enum, DateTime, func
 from ..database import Base
+from passlib.context import CryptContext
+
+pwd_context= CryptContext(schemes=["bcrypt"], deprecated="auto")
 
 class User(Base):
     __tablename__ = "users"
@@ -14,3 +17,9 @@ class User(Base):
     role = Column(Enum("admin", "user"), default="user")
     password = Column(String(100), nullable=False)
     created_at = Column(DateTime, nullable=False, default=func.now())
+
+    def set_password(self, password: str):
+        self.password = pwd_context.hash(password)
+        
+    def verify_password(self, password: str):
+        return pwd_context.verify(password, self.password)
