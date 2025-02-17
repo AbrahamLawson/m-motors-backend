@@ -1,4 +1,5 @@
 from sqlalchemy import Column, Integer, String, VARCHAR, Enum, DateTime, func, TEXT, BOOLEAN
+from sqlalchemy.orm import relationship
 from ..database import Base
 
 class Vehicule(Base):
@@ -15,3 +16,4 @@ class Vehicule(Base):
     disponibilities = Column(BOOLEAN, default=True)
     options = Column(Enum(" camera_de_recul", "cartes_mains_libres", "siege_avant_chauffant", "retro_exterieur_rabattable_electriquement"), nullable=True)
     created_at = Column(DateTime, nullable=False, default=func.now())
+    reservations = relationship("Reservation", back_populates="vehicule")
