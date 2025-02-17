@@ -1,4 +1,5 @@
 from sqlalchemy import Column, Integer, String, VARCHAR, Enum, DateTime, func
+from sqlalchemy.orm import relationship
 from ..database import Base
 from passlib.context import CryptContext
 
@@ -17,6 +18,7 @@ class User(Base):
     role = Column(Enum("admin", "user"), default="user")
     password = Column(String(100), nullable=False)
     created_at = Column(DateTime, nullable=False, default=func.now())
+    reservations = relationship("Reservation", back_populates="user")
 
     def set_password(self, password: str):
         self.password = pwd_context.hash(password)

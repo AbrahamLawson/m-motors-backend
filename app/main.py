@@ -5,6 +5,7 @@ from fastapi.security import HTTPBasic, HTTPBasicCredentials
 from app.database import Base, engine
 from app.models.user import User
 from app.models.vehicule import Vehicule
+from app.models.reservation import Reservation
 from app.routes import user_routes
 
 app = FastAPI()
