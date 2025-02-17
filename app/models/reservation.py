@@ -9,7 +9,7 @@ class Reservation(Base):
     vehicule_id = Column(Integer, ForeignKey('vehicules.id'), nullable=False)
     start_date = Column(DateTime, nullable=False)
     end_date = Column(DateTime, nullable=False)
-    status = Column(Enum("en_cours", "acceptee", "refusee"), nullable=True)
+    status = Column(Enum("in_progress", "accepted", "refused"), nullable=True)
     created_at = Column(DateTime, nullable=False, default=func.now())
 
     user = relationship("User", back_populates="reservations")
