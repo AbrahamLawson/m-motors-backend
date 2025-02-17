@@ -1,19 +1,25 @@
-from sqlalchemy import Column, Integer, String, VARCHAR, Enum, DateTime, func, TEXT, BOOLEAN
+from sqlalchemy import Column, Integer, String, Boolean, DateTime, func, TEXT, BOOLEAN
 from sqlalchemy.orm import relationship
 from ..database import Base
 
+
 class Vehicule(Base):
     __tablename__ = "vehicules"
-    id = Column(Integer, autoincrement=True, primary_key=True)
-    model = Column(VARCHAR(50), nullable=False)
-    color = Column(VARCHAR(50), nullable=False)
-    picture = Column(VARCHAR(255), nullable=False)
-    year = Column(Integer, nullable=False)
-    kilometers = Column(Integer, nullable=False)
-    location_price = Column(Integer, nullable=False)
-    sell_price = Column(Integer, nullable=False)
-    description = Column(TEXT, nullable=False)
-    disponibilities = Column(BOOLEAN, default=True)
-    options = Column(Enum(" camera_de_recul", "cartes_mains_libres", "siege_avant_chauffant", "retro_exterieur_rabattable_electriquement"), nullable=True)
+
+    id = Column(Integer, primary_key=True, index=True)
+    brand = Column(String(50), index=True)     
+    model = Column(String(50), index=True) 
+    picture = Column(String(255), index=True)  
+    kilometers = Column(Integer)   
+    year = Column(Integer)   
+    location_price = Column(Integer)   
+    sell_price = Column(Integer) 
+    description = Column(String(255), index=True)   
+    rear_view_camera = Column(Boolean, default=False)
+    hands_free_card = Column(Boolean, default=False) 
+    heated_front_seats = Column(Boolean, default=False)            
+    electrically_folding_exterior_retro = Column(Boolean, default=False)                  
     created_at = Column(DateTime, nullable=False, default=func.now())
+
     reservations = relationship("Reservation", back_populates="vehicule")
+  
