@@ -1,4 +1,12 @@
 __pycache__/
-*.pyc
-*.pyo
+*.py[cod]
+*.so
+.env
+venv/
 env/
+.vscode/
+.pytest_cache/
+.coverage
+*.db
+*.sqlite
+*.log
