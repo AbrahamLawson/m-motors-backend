@@ -1,7 +1,13 @@
 from pydantic import BaseModel
 from datetime import datetime
 from typing import Optional
+from enum import Enum
 
+
+class ContractTypeEnum(str, Enum):
+    LOCATION = "location"
+    ACHAT = "achat"
+    LOA = "loa"  
 
 #Base commune pour tous les schémas
 class VehiculeBase(BaseModel):
@@ -13,10 +19,11 @@ class VehiculeBase(BaseModel):
     location_price: int
     sell_price: int
     description: str
-    rear_view_camera: bool = False
-    hands_free_card: bool = False
-    heated_front_seats: bool = False
-    electrically_folding_exterior_retro: bool = False
+    comprehensive_insurance: bool = False
+    breakdown_assistance: bool = False
+    maintenance_and_ass: bool = False
+    technical_inspection: bool = False
+    contract_type: ContractTypeEnum
 
 #Schéma pour la création d'un vehicule
 class VehiculeCreate(VehiculeBase):
@@ -32,15 +39,19 @@ class VehiculeUpdate(BaseModel):
     location_price: Optional[int] = None
     sell_price: Optional[int] = None
     description: Optional[str] = None
-    rear_view_camera: Optional[bool] = False
-    hands_free_card: Optional[bool] = False
-    heated_front_seats: Optional[bool] = False
-    electrically_folding_exterior_retro: Optional[bool] = False
+    comprehensive_insurance: Optional[bool] = False
+    breakdown_assistance: Optional[bool] = False
+    maintenance_and_ass: Optional[bool] = False
+    technical_inspection: Optional[bool] = False
+    contract_type: Optional[ContractTypeEnum] = None
 
 #Schéma pour la supression d'un véhicule
 class VehiculeOut(VehiculeBase):
     id: int
     created_at: datetime
 
-    class Config:
-         orm_mode = True
+    model_config = {
+    "from_attributes": True
+}
+
+

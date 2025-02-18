@@ -1,6 +1,5 @@
 from sqlalchemy.orm import Session
 from app.models import Vehicule
-
 class VehiculeRepository:
     @staticmethod
     def save(db: Session, vehicule: Vehicule):

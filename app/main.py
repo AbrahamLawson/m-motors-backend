@@ -12,6 +12,7 @@ app = FastAPI()
 
 security = HTTPBasic()
 
+#Base.metadata.drop_all(bind=engine)
 # Create dataBase with the tables if it not exist
 Base.metadata.create_all(bind=engine)
 
