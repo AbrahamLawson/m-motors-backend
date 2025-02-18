@@ -19,7 +19,7 @@ class Vehicule(Base):
     hands_free_card = Column(Boolean, default=False) 
     heated_front_seats = Column(Boolean, default=False)            
     electrically_folding_exterior_retro = Column(Boolean, default=False)                  
+    disponibilities = Column(Boolean, default=False)
     created_at = Column(DateTime, nullable=False, default=func.now())
 
     reservations = relationship("Reservation", back_populates="vehicule")
-  

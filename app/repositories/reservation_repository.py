@@ -1,5 +1,5 @@
 from sqlalchemy.orm import Session
-from app.models import Reservation
+from app.models.reservation import Reservation
 
 class ReservationRepository:
     @staticmethod

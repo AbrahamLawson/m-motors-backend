@@ -6,7 +6,7 @@ from app.database import Base, engine
 from app.models.user import User
 from app.models.vehicule import Vehicule
 from app.models.reservation import Reservation
-from app.routes import user_routes, vehicules_routes
+from app.routes import user_routes, vehicules_routes, reservation_routes
 
 app = FastAPI()
 
@@ -40,6 +40,8 @@ def get_current_username(
 app.include_router(user_routes.router)
 
 app.include_router(vehicules_routes.router, prefix="/vehicules", tags=["Véhicules"])
+
+app.include_router(reservation_routes.router, prefix="/reservations", tags=["Réservations"])
 
 # Auth 
 @app.get("/user/me")
