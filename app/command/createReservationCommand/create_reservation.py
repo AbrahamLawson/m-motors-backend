@@ -7,7 +7,7 @@ class CreateReservationCommand(BaseModel):
     vehicule_id: int
     start_date: datetime
     end_date: Optional[datetime] = None
-    documents: Optional[Dict[str, str]] = None  # Assure que c'est bien un mapping clé/URL
+    documents: Optional[Dict[str, str]] = None  
 
     class Config:
         from_attributes = True
