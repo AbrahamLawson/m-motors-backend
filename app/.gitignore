@@ -1,6 +1,44 @@
-# Ignorer l'environnement virtuel complet
+## Python virtual environment
 env/
-.env
+venv/
+ENV/
+
+# Python bytecode
 __pycache__/
-*.pyc
-*.pyo
+*.py[cod]
+*$py.class
+
+# Distribution / packaging
+dist/
+build/
+*.egg-info/
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.coverage
+.coverage.*
+coverage.xml
+*.cover
+
+# IDEs
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Logs
+*.log
+
+# Database
+*.db
+*.sqlite3
+
+# System files
+.DS_Store
+Thumbs.db
