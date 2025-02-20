@@ -1,5 +1,5 @@
-from pydantic import BaseModel
-from datetime import datetime
+from pydantic import BaseModel, Field
+from datetime import datetime, date
 from typing import Optional
 from enum import Enum
 
@@ -54,4 +54,17 @@ class VehiculeOut(VehiculeBase):
     "from_attributes": True
 }
 
+#Schema pour le filtre 
 
+class VehiculeFilter(BaseModel):
+    brand: Optional[str] = None
+    model: Optional[str] = None
+    year_min: Optional[int] = None
+    year_max: Optional[int] = None
+    price_min: Optional[int] = None
+    price_max: Optional[int] = None
+    contract_type: Optional[ContractTypeEnum] = None
+    start_date: Optional[date] = None
+    end_date: Optional[date] = None
+    page: int = 1
+    limit: int = 10
