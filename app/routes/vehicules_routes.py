@@ -4,6 +4,7 @@ from app.schema.vehicles_schema import VehiculeCreate, VehiculeUpdate, VehiculeO
 from app.repositories.vehicule_repository import VehiculeRepository
 from app.database import get_db
 from app.models.vehicule import Vehicule
+from app.schema.vehicles_schema import VehiculeOut
 
 
 router = APIRouter()
@@ -35,7 +36,6 @@ def update(vehicule_id: int, vehicule: VehiculeUpdate, db: Session = Depends(get
     if not db_vehicule:
         raise HTTPException(status_code=404, detail="Véhicule non trouvé")
     
-    # Mise à jour des champs
     for key, value in vehicule.model_dump(exclude_unset=True).items():
         setattr(db_vehicule, key, value)
 
@@ -50,3 +50,4 @@ def delete(vehicule_id: int, db: Session = Depends(get_db)):
     
     VehiculeRepository.delete(db, vehicule)
     return {"message": "Véhicule supprimé avec succès"}
+
