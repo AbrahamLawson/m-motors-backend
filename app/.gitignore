@@ -1,4 +1,6 @@
+# Ignorer l'environnement virtuel complet
+env/
+.env
 __pycache__/
 *.pyc
 *.pyo
-env/
