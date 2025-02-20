@@ -13,7 +13,7 @@ router = APIRouter(
     tags=["reservations"]
 )
 
-@router.post("/", status_code=status.HTTP_201_CREATED, response_model=ReservationResponse)
+@router.post("/create", status_code=status.HTTP_201_CREATED, response_model=ReservationResponse)
 async def create_reservation(command: CreateReservationCommand, db: Session = Depends(get_db)):
     logging.info("POST /reservations/ called") 
     try:

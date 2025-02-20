@@ -13,7 +13,7 @@ class Reservation(Base):
     status = Column(Enum("in_progress", "accepted", "refused"), nullable=True, default="in_progress")
     created_at = Column(DateTime, nullable=False, default=func.now())
     repertory_name = Column(String(255), nullable=True)
-    documents = Column(JSON, nullable=True)  # Vérifier que c'est bien stocké en JSON
+    documents = Column(JSON, nullable=True)
     total_price = Column(Float, nullable=True)  
 
     user = relationship("User", back_populates="reservations")
