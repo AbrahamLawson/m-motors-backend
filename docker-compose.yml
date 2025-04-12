@@ -12,5 +12,19 @@ services:
       - "3306:3306"
     volumes:
       - mysql_data:/var/lib/mysql
+
+  app: 
+    build: .
+    container_name: m_motors_backend
+    restart: always
+    depends_on:
+      - mysql
+    ports:
+      - "8000:8000"
+    environment:
+      DATABASE_URL: mysql://fastapi_user:fastapi_pass@mysql:3306/fastapi_db
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000
+
+      
 volumes:
   mysql_data:
