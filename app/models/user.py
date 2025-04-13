@@ -15,7 +15,7 @@ class User(Base):
     phone_number = Column(VARCHAR(15), nullable=False)
     address = Column(VARCHAR(200), nullable=False)
     zip_code = Column(VARCHAR(10), nullable=False)
-    role = Column(Enum("admin", "user"), default="user")
+    role = Column(Enum("admin", "user"), default="user", nullable = False)
     password = Column(String(255), nullable=False)
     created_at = Column(DateTime, nullable=False, default=func.now())
     reservations = relationship("Reservation", back_populates="user")
